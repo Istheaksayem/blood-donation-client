@@ -1,49 +1,64 @@
 import React from 'react';
+
 import Logo from '../../../Components/Logo/Logo';
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
+    // Active link style class
+    const navLinks = (
+        <>
+            <li><NavLink to="/" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Home</NavLink></li>
+            {/* <li><NavLink to="/donation-requests" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Donation Requests</NavLink></li>
+            <li><NavLink to="/blog" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Blog</NavLink></li> */}
+            <li className="lg:hidden"><NavLink to="/registration">Join as Donor</NavLink></li>
+        </>
+    );
+
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-white/80 backdrop-blur-md sticky top-0 z-50 px-4 md:px-8 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden p-1 mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
                     </div>
-                    <ul
-                        tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-xl bg-base-100 rounded-2xl w-52 font-medium border border-red-50">
+                        {navLinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost px-2">
+                
+                {/* Logo Section */}
+                <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
                     <Logo />
-                </a>
+                    <span className="text-xl md:text-2xl font-black tracking-tight text-gray-800">
+                        Pulse<span className="text-red-600">Aid</span>
+                    </span>
+                </Link>
             </div>
+
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2 bg-base-100 w-40 z-1">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><a>Item 3</a></li>
+                <ul className="menu menu-horizontal px-1 gap-2 font-semibold text-gray-600">
+                    {navLinks}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
+
+            <div className="navbar-end gap-3">
+                {/* Registration Link - Hidden on mobile, button on desktop */}
+                <Link 
+                    to="/registration" 
+                    className="hidden md:flex btn btn-ghost text-red-600 hover:bg-red-50 border-none rounded-full"
+                >
+                    Register
+                </Link>
+
+                {/* Main Login/Call to Action Button */}
+                <Link 
+                    to="/login" 
+                    className="btn bg-red-600 hover:bg-red-700 text-white border-none rounded-full px-6 shadow-md shadow-red-200 transition-all duration-300 transform hover:scale-105"
+                >
+                    Login
+                </Link>
             </div>
         </div>
     );
