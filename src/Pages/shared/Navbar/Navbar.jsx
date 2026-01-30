@@ -8,8 +8,6 @@ const Navbar = () => {
     const navLinks = (
         <>
             <li><NavLink to="/" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Home</NavLink></li>
-            {/* <li><NavLink to="/donation-requests" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Donation Requests</NavLink></li>
-            <li><NavLink to="/blog" className={({ isActive }) => isActive ? "text-red-600 font-bold" : "hover:text-red-600 transition-colors"}>Blog</NavLink></li> */}
             <li className="lg:hidden"><NavLink to="/registration">Join as Donor</NavLink></li>
         </>
     );
