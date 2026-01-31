@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaSignInAlt, FaLock } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, Navigate, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [loading, setLoading] = useState(false);
+    const navigate =useNavigate()
 
-    const onSubmit = (data) => {
+    const handleLogin = (data) => {
         setLoading(true);
         console.log("Login Data:", data);
-        
-        // এখানে আপনার ব্যাকএন্ড লগইন এপিআই কল করবেন
+     
         setTimeout(() => {
             setLoading(false);
-            alert("Login logic goes here!");
+            navigate('/')
+            toast.success("Login successfully!");
         }, 2000);
     };
 
@@ -38,7 +40,7 @@ const Login = () => {
                         <p className="text-gray-500 mt-2">Enter your credentials to access your account</p>
                     </div>
                     
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
                         
                         {/* Email Field */}
                         <div className="form-control">
